@@ -147,5 +147,26 @@ public interface Protocol {
 		 */
 		public static final String MESSAGE = "ms";
 		
+		/*
+		 * =========== EXTENSION: CHALLENGING ===========
+		 */
+		
+		/**
+		 * This packet is a request from the client to the server to respond with a list
+		 * of all the players that are connected. If the server responds with this packet
+		 * type, it is the packet that contains the list.
+		 */
+		public static final String PLAYER_LIST = "pl";
+		
+		/**
+		 * This packet type is sent from client to server containing the opponents the
+		 * player wants to challenge.
+		 * If this packet type is sent from the server to a client, it means that player
+		 * was challenged and the packet will then contain the challenger's username.
+		 */
+		public static final String CHALLENGE = "cl";
+		
+		public static final String CHALLENGE_REPLY = "ch";
+		
 	}
 }
