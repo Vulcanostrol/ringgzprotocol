@@ -30,13 +30,10 @@ public interface Protocol {
 		 * This packet type is for when the client first achieves a TCP connection
 		 * with the server. With this packet, the client can send its extensions
 		 * and basically ask to be connected to the server.
+		 * If this packet is received on a client from the server, it is the reply
+		 * packet to the originally sent packet from the client.
 		 */
 		public static final String CONNECT = "cn";
-		
-		/**
-		 * This is the server's response to the client's CONNECT packet.
-		 */
-		public static final String CONNECT_REPLY = "cr";
 		
 		/*
 		 * =========== REQUESTING A GAME ===========
@@ -75,8 +72,9 @@ public interface Protocol {
 		/**
 		 * This packet type is sent by the server to all players in a game when all
 		 * players responded with <code>ACCEPT</code> to the server's player status
-		 * requests. If one or more players decline, they are thrown out of the lobby
-		 * and the remaining players are re-sent a <code>JOINED_LOBBY</code> packet.
+		 * requests. If one or more players responded with <code>DECLINE</code>, they
+		 * are thrown out of the lobby and the remaining players are re-sent a
+		 * <code>JOINED_LOBBY</code> packet.
 		 */
 		public static final String GAME_STARTED = "gs";
 		
@@ -166,7 +164,19 @@ public interface Protocol {
 		 */
 		public static final String CHALLENGE = "cl";
 		
+		/**
+		 * This is the reply packet from the client that has been challenged to the server
+		 * (and indirectly the client that is challenging him/her).
+		 */
 		public static final String CHALLENGE_REPLY = "ch";
+		
+		/**
+		 * This packet is sent from the server to the challenging client if any of the
+		 * challenged players refused the proposal. Otherwise, the <code>GAME_STARTED</code>
+		 * packet is sent to start the game.
+		 * @see {@link #GAME_STARTED}
+		 */
+		public static final String CHALLENGE_REFUSED = "cr";
 		
 	}
 }
