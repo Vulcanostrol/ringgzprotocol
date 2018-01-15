@@ -1,21 +1,96 @@
+/**
+ * Protocol class. This class contains string representations of everything that
+ * is generalized and agreed upon during the programming project session in week
+ * 6.
+ * <p>
+ * <b>Please note: </b> This code is supposed to be used in accordance with the
+ * given documentation (PDF document, most likely). For any questions that are
+ * not handled in the documentation or the documentation in this class, please
+ * ask Koen van den Brink (programming group 2) for help.
+ * </p>
+ * 
+ * @author Eduard Modreanu and Koen van den Brink
+ * @version 1.1
+ * @since 2018-01-14
+ */
 public interface Protocol {
 	
 	/*
 	 * =========== GENERAL ===========
 	 */
 	
+	/**
+	 * The information block delimiter. This character should be in between all
+	 * your information blocks. E.g.:
+	 * <p>
+	 * 	 <code>
+	 *     String connectPacket = Protocol.CONNECT + Protocol.DELIMITER +
+	 *     "Harry" + Protocol.DELIMITER + Protocol.Extensions.CHATTING;
+	 * 	 </code>
+	 * </p>
+	 * This stores a string into <code>connectPacket</code> that tells the server
+	 * the client wants to connect with he username "Harry" and that the client
+	 * is using the <code>CHATTING</code> extension.
+	 */
 	public static final String DELIMITER = ";";
 	
+	/** For general use. Used to refer to acceptance. */
 	public static final String ACCEPT	= "0";
+	
+	/** For general use. Used to refer to denial. */
 	public static final String DECLINE	= "1";
 	
 	/*
 	 * =========== EXTENSION: CHATTING ===========
 	 */
 	
+	/** Messages sent to everyone logged into the server. */
 	public static final String GLOBAL	= "0";
+	
+	/** Messages sent to everyone in the sender's lobby. */
 	public static final String LOBBY	= "1";
+	
+	/** Messages sent to a given player. */
 	public static final String PRIVATE	= "2";
+	
+	/**
+	 * This class contains all string representations of all the game extensions.
+	 * There are four extensions:
+	 * <ul>
+	 * 	 <li>Chatting</li>
+	 * 	 <li>Challenging</li>
+	 * 	 <li>Leaderboard</li>
+	 * 	 <li>Security</li>
+	 * </ul>
+	 */
+	public static interface Extensions {
+		
+		/**
+		 * The chatting extension: clients can send messages to each other via
+		 * the server.
+		 */
+		public static final String EXTENSION_CHATTING = "chat";
+		
+		/**
+		 * The challenging extension: clients can challenge each other via the
+		 * server and start a game in that way.
+		 */
+		public static final String EXTENSION_CHALLENGING = "chal";
+		
+		/**
+		 * The leaderboard extension: clients can request a leaderboard from the
+		 * server and a log per player of when that player specifically acquired
+		 * certain scores.
+		 */
+		public static final String EXTENSION_LEADERBOARD = "lead";
+		
+		/**
+		 * The security extension: clients can register a username/password
+		 * combination and log in using this combination.
+		 */
+		public static final String EXTENSION_SECURITY = "secu";
+		
+	}
 	
 	/**
 	 * This class contains all packet type string representations.
@@ -177,6 +252,37 @@ public interface Protocol {
 		 * @see {@link #GAME_STARTED}
 		 */
 		public static final String CHALLENGE_REFUSED = "cr";
+		
+		/*
+		 * =========== EXTENSION: LEADERBOARD ===========
+		 */
+		
+		/**
+		 * This packet type is sent from the client to the server to request a response packet
+		 * containing the leaderboard of the server. If this packet type is sent from server
+		 * to client it is the mentioned packet containing the server's leaderboard.
+		 */
+		public static final String LEADERBOARD = "lb";
+		
+		/**
+		 * This packet type is sent from the client to the server to request a response packet
+		 * containing the score log of a specific player. If this packet type is sent from server
+		 * to client it is the mentioned packet containing the player's log of scores (with 
+		 * scores and timestamps).
+		 */
+		public static final String SCORE_LOG = "sl";
+		
+		/*
+		 * =========== EXTENSION: SECURITY ===========
+		 */
+		
+		/**
+		 * This packet type is sent from the client to the server to either log in or register
+		 * (please refer to the document on the specific implementation of this). It is also sent
+		 * from server to client to tell the client whether the login or register request was
+		 * successful.
+		 */
+		public static final String LOGIN_REGISTER = "lr";
 		
 	}
 }
