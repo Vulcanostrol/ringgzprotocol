@@ -8,6 +8,9 @@
  * not handled in the documentation or the documentation in this class, please
  * ask Koen van den Brink (programming group 2) for help.
  * </p>
+ * <p>
+ * Any suggestions to improve the documentation or this code are welcome!
+ * </p>
  * 
  * @author Eduard Modreanu and Koen van den Brink
  * @version 1.1
@@ -34,11 +37,69 @@ public interface Protocol {
 	 */
 	public static final String DELIMITER = ";";
 	
+	/*
+	 * =========== ACCEPTANCE AND DENIAL ===========
+	 */
+	
 	/** For general use. Used to refer to acceptance. */
 	public static final String ACCEPT	= "0";
 	
 	/** For general use. Used to refer to denial. */
 	public static final String DECLINE	= "1";
+
+	/*
+	 * =========== PLAYER TYPES ===========
+	 */
+	
+	/** 
+	 * String representation of an AI. Used in the packet where a player can request
+	 * the type of player they want to paly against.
+	 */
+	public static final String COMPUTER_PLAYER	= "0";
+	
+	/**
+	 * String representation of another human player or client. Used in the packet
+	 * where a player can request the type of player they want to paly against.
+	 */
+	public static final String HUMAN_PLAYER	= "1";
+	
+	/*
+	 * =========== MAKING MOVES ===========
+	 */
+	
+	/**
+	 * String representation of a base. Used in <code>MOVE</code> packets.
+	 */
+	public static final String BASE	= "0";
+	
+	/**
+	 * String representation of the starting base. Used in <code>MOVE</code> packets.
+	 */
+	public static final String STARTING_BASE	= "1";
+	
+	/**
+	 * String representation of the smallest size ring. Used in <code>MOVE</code>
+	 * packets.
+	 */
+	public static final String RING_SMALLEST	= "2";
+	
+	/**
+	 * String representation of the small sized ring. Used in <code>MOVE</code>
+	 * packets.
+	 */
+	public static final String RING_SMALL	= "3";
+	
+	/**
+	 * String representation of the medium sized ring. Used in <code>MOVE</code>
+	 * packets.
+	 */
+	public static final String RING_MEDIUM	= "4";
+	
+	/**
+	 * String representation of the large sized ring. Used in <code>MOVE</code>
+	 * packets.
+	 */
+	public static final String RING_LARGE	= "5";
 	
 	/*
 	 * =========== EXTENSION: CHATTING ===========
