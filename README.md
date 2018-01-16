@@ -155,7 +155,7 @@ All clients have to always be ready for the following packet from the server:
 
   The server will respond to this with a packet containing all the connected players:
   
-### PLAYER_LIST;<username1>;<username2>;<username3>; … ;<usernameN>
+### PLAYER_LIST;&lt;username1&gt;;&lt;username2&gt;;&lt;username3&gt;; … ;&lt;usernameN&gt;
   
   Here, usernameK is the username of the Kth player connected to the server.
   
@@ -182,7 +182,7 @@ All clients have to always be ready for the following packet from the server:
   Notice that GAME_STARTED here, will be the same string representation as if the game were to be made normally.
 If one or more players refuse the challenge request, the server will send the challenger the following packet:
 
-### CHALLENGE_REFUSED;<refuser1>;<refuser2>;<refuser3>
+### CHALLENGE_REFUSED;&lt;refuser1&gt;;&lt;refuser2&gt;;&lt;refuser3&gt;
 
   Here, the different usernames of the players that refused the request are given in the refuser1, refuser2 and refuser3 information blocks.
   
@@ -196,7 +196,7 @@ If one or more players refuse the challenge request, the server will send the ch
 
   The server will then respond with a packet containing the usernames and total score of all players (that ever connected):
   
-### LEADERBOARD;[player1];[score1];<player2>;<score2>; … <playerN>;<scoreN>
+### LEADERBOARD;[player1];[score1];&lt;player2&gt;;&lt;score2&gt;; … &lt;playerN&gt;;&lt;scoreN&gt;
   
   Notice that every playerK username is linked with the scoreK information block right after it. Even if the score of a player is zero, the server must still send this.
   
@@ -206,7 +206,7 @@ The client can also choose to get a log of when a specific player acquired point
 
   Here, the username is the username of the player that the client wants to get a score log of. The server will respond to this packet with the following packet:
   
-### SCORE_LOG;<score1>;<timestamp1>;<score2>;<timestamp2>; … <scoreN>;<timestampN>
+### SCORE_LOG;&lt;score1&gt;;&lt;timestamp1&gt;;&lt;score2&gt;;&lt;timestamp2&gt;; … &lt;scoreN&gt;;&lt;timestampN&gt;
   
   Here, scoreK is linked to timestampK. This means that amount of points was acquired at that time. Notice all information blocks are optional. If a player has no points, and the client requests the log, the server will not have to return any score or timestamp.
 
