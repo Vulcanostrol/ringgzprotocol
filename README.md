@@ -9,7 +9,7 @@
 
   The documentation – in the code as well as this document – make use of a specific syntax. This is because packets sent from server to client must have a certain layout. In this layout, some arguments can be mandatory, and others can be optional to give. E.g.: when a game starts, the usernames of all the players are given. However, games can have different amounts of players. Therefore, if the usernames of all players that are playing are given, the amount of arguments can vary. Make sure this is handled in your client and server implementation!
   
-  Mandatory packet information is documented with [square brackets] around it. Optional information (not actually optional, but not needed to conform to the networking protocol) is indicated with <hooked brackets>. This can be information that has to do with lists: it is needed, but clients and servers should handle packets that do and do not include that information. Information blocks in the documentation is separated with semicolons ( ; ). These semicolons are the agreed delimiter of information blocks and therefore should also seperate your information blocks in your implementation. The delimiter should not be at the start or end of a packet.
+  Mandatory packet information is documented with [square brackets] around it. Optional information (not actually optional, but not needed to conform to the networking protocol) is indicated with &lt;hooked brackets&gt;. This can be information that has to do with lists: it is needed, but clients and servers should handle packets that do and do not include that information. Information blocks in the documentation is separated with semicolons ( ; ). These semicolons are the agreed delimiter of information blocks and therefore should also seperate your information blocks in your implementation. The delimiter should not be at the start or end of a packet.
   
 ## Server default port
 
@@ -23,14 +23,14 @@ Usernames or chat messages can contain any character, excluding the semicolon ( 
 
   The client starts with creating a connection with the server, using the server’s IP address and default port. It will then send a connect packet, of which the format is as follows:
   
-### CONNECT;[username];&lt;extension1&gt; ;&lt;extension2&gt; ;&lt;extension3&gt; ;&lt;extension4&gt; 
+### CONNECT;[username];&lt;extension1&gt;;&lt;extension2&gt;;&lt;extension3&gt;;&lt;extension4&gt; 
 
   Here, CONNECT is type of packet, username is the username your client will play as, and extension1, extension2, extension3 and extension4 are the extensions your client is using. 
 These extensions can be the chatting-, challenging-, leaderboard- or security extension and should be handled by the server when given in any order. The same extension will not be given more than once. String representations of the extensions are found in the protocol code.
 
   The server will then send a response to this packet containing whether it is accepting the client. In addition to than decide on whether it wants to cis, the server will send its extensions that it is using. This way, the client connect with this server. The response packet will have the following format:
   
-### CONNECT_REPLY;[accept/decline];<extension1>;<extension2>;<extension3>;<extension4>
+### CONNECT_REPLY;[accept/decline];&lt;extension1&gt;;&lt;extension2&gt;;&lt;extension3&gt;;&lt;extension4&gt;
 
   Here, CONNECT_REPLY is once again the type of packet. This will be assumed to be known from now on. In the format, accept/decline is whether the server accepted the connection of the client. The two string that will represent acceptance and declination will also be in the protocol code. The extension blocks are what extensions the server is using. Likewise, the client should handle these information blocks when given in any order and he same extension will not be given more than once.
   
