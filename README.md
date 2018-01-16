@@ -222,7 +222,7 @@ The client can also choose to get a log of when a specific player acquired point
   
   The server will respond to the client’s packet with the following packet:
   
-  LOGIN_REGISTER;[accept/decline]
+  ### LOGIN_REGISTER;[accept/decline]
   
   Note accept/decline use the same string representations as earlier accept/decline information blocks. However they can have more meanings depending on what the client sent earlier:
   
