@@ -23,7 +23,7 @@ Usernames or chat messages can contain any character, excluding the semicolon ( 
 
   The client starts with creating a connection with the server, using the server’s IP address and default port. It will then send a connect packet, of which the format is as follows:
   
-### CONNECT;[username];<extension1>;<extension2>;<extension3>;<extension4>
+### CONNECT;[username];&lt;extension1&gt; ;&lt;extension2&gt; ;&lt;extension3&gt; ;&lt;extension4&gt; 
 
   Here, CONNECT is type of packet, username is the username your client will play as, and extension1, extension2, extension3 and extension4 are the extensions your client is using. 
 These extensions can be the chatting-, challenging-, leaderboard- or security extension and should be handled by the server when given in any order. The same extension will not be given more than once. String representations of the extensions are found in the protocol code.
