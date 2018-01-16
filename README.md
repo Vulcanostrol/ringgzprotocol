@@ -26,7 +26,7 @@ Usernames or chat messages can contain any character, excluding the semicolon ( 
 ### CONNECT;[username];&lt;extension1&gt;;&lt;extension2&gt;;&lt;extension3&gt;;&lt;extension4&gt; 
 
   Here, CONNECT is type of packet, username is the username your client will play as, and extension1, extension2, extension3 and extension4 are the extensions your client is using. 
-These extensions can be the chatting-, challenging-, leaderboard- or security extension and should be handled by the server when given in any order. The same extension will not be given more than once. String representations of the extensions are found in the protocol code.
+These extensions can be the chatting-, challenging-, leaderboard- or security extension and should be handled by the server when given in any order. The same extension will not be given more than once. String representations of the extensions are found in the protocol code. If the extensions that are sent do not correspond to the string representations in the code, it can be ignored.
 
   The server will then send a response to this packet containing whether it is accepting the client. In addition to than decide on whether it wants to cis, the server will send its extensions that it is using. This way, the client connect with this server. The response packet will have the following format:
   
@@ -44,7 +44,7 @@ These extensions can be the chatting-, challenging-, leaderboard- or security ex
   
   In the format, the player_amount represent the number of players that you want to play against.
   
-  The player_type represents if you want to play versus a human or versus an AI.
+  The player_type represents if you want to play versus a human or versus an AI. If the string that is sent does not correspond to what is found in the code, the sent player_type can be ignored and HUMAN_PLAYER can be assumed.
   
   The response from the server will be a textual feedback that lets the player know that he successfully joined in the lobby. 
   
@@ -65,6 +65,8 @@ These extensions can be the chatting-, challenging-, leaderboard- or security ex
   The response of the client side be a packet that let’s the server know if the player accepted or declined the beginning of the game.
   
 ### PLAYER_STATUS;[accept/decline]
+
+If the accept/decline does not correspond to the ACCEPT or DECLINE in the code, DECLINE can be assumed by the server.
 
   If somebody declined, all players will be send in the lobby and the ”you are in and waiting” packet will be send:
   
@@ -106,11 +108,11 @@ These extensions can be the chatting-, challenging-, leaderboard- or security ex
     -Primary
     -Secondary
 
-  Move types and primary/secondary color string representations are found in the code. Colors are assigned on the client. The server always checks whether the move the player is making is valid. If it is not, the server resends the initial packet to the same client. Otherwise, the server send the following packet to all clients.
+  Move types and primary/secondary color string representations are found in the code. Colors are assigned on the client. The server always checks whether the move the player is making is valid. If it is not, the server resends the initial packet to the same client. Otherwise, the server send the following packet to all clients. Notice that not only x and y can be out of bounds, but also move_type and color can differ from the code.
   
 ### MOVE;[x];[y];[move_type];[color]
 
-All information in this packet is the same as in the previous packet.
+All information in this packet is the same as in the previous packet. This will always be a valid move since the server only sends this packet if the move is valid.
 
 ## Game Ended
 
@@ -139,7 +141,7 @@ As said, all remaining players move to the request game state, where they can re
   
 - Global: the message is sent to everyone that is connected to the server.
 - Game: the message is sent to everyone that is currently in the same game as the sender.
-- Private: the message is sent to the player that is connected to the server and has the same username as given in the receiver information block.
+- Private: the message is sent to the player that is connected to the server and has the same username as given in the receiver information block. If the message_type does not correspond to the string representations in the code, GLOBAL can be assumed by the server. If the receiver username does not exist, the message is not sent to anybody.
 
 All clients have to always be ready for the following packet from the server:
 
@@ -204,7 +206,7 @@ The client can also choose to get a log of when a specific player acquired point
 
 ### SCORE_LOG;[username]
 
-  Here, the username is the username of the player that the client wants to get a score log of. The server will respond to this packet with the following packet:
+  Here, the username is the username of the player that the client wants to get a score log of. If the username does not exist, the server will not respond. The server will respond to this packet with the following packet:
   
 ### SCORE_LOG;&lt;score1&gt;;&lt;timestamp1&gt;;&lt;score2&gt;;&lt;timestamp2&gt;; … &lt;scoreN&gt;;&lt;timestampN&gt;
   
