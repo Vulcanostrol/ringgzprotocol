@@ -116,7 +116,7 @@ All information in this packet is the same as in the previous packet.
 
   After the game has ended the server will send to the client a packet that lets us know how many points every player have.
   
-### GAME_ENDED;[username1];[points1];[username2];[points2];<username3>;<points3>; <username4>;<points4>
+### GAME_ENDED;[username1];[points1];[username2];[points2];&lt;username3&gt;;&lt;points3&gt;;&lt;username4&gt;;&lt;points4&gt;
 
   Here, all usernameK information blocks are linked to their respective score, given in scoreK. Clients can of course count the points themselves. However, the server will still send this information always when a game has ended. Therefore, a client will not have to count points when a game has ended.
   
@@ -124,7 +124,7 @@ All information in this packet is the same as in the previous packet.
 
   If a player disconnects, every player will receive a message that let them know that have been moved to the request game state, explained previously.
   
-###PLAYER_DISCONNECTED;[disconnected]
+### PLAYER_DISCONNECTED;[disconnected]
 
   Here, disconnecter is the username of the player that disconnected from the game.
 As said, all remaining players move to the request game state, where they can request a new game. Nobody acquires any points.
@@ -133,7 +133,7 @@ As said, all remaining players move to the request game state, where they can re
 
   Chatting can be done easily. The client will only have to send the following packet:
   
-### MESSAGE;[message_text];[message_type];<receiver>
+### MESSAGE;[message_text];[message_type];&lt;receiver&gt;
   
   Here, message_text is the plain text message that the sender is sending, message_type is the type of message that the sender is sending. The string representations of these message types are in the protocol code. The types of messages are:
   
