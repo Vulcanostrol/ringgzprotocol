@@ -39,13 +39,13 @@ These extensions can be the chatting-, challenging-, leaderboard- or security ex
 
   A player can request a game and it will send the packet that has the following format:
   
-### GAME_REQUEST;[player_amount];[player_type]
+### GAME_REQUEST;[player_amount];[player_type];&lt;opponent_type&gt;
 
-  In order to request a game or join in an already created lobby you have to set an username that must not contain ### ;
-  
   In the format, the player_amount represent the number of players that you want to play against.
   
-  The player_type represents if you want to play versus a human or versus an AI. If the string that is sent does not correspond to what is found in the code, the sent player_type can be ignored and HUMAN_PLAYER can be assumed.
+  The player_type is the type of player that the client is running on.
+  
+  The opponent_type represents if you want to play versus a human or versus an AI. If the string that is sent does not correspond to what is found in the code, or opponent_type was not sent, HUMAN_PLAYER can be assumed by the server.
   
   The response from the server will be a textual feedback that lets the player know that he successfully joined in the lobby. 
   
