@@ -102,6 +102,20 @@ public interface Protocol {
 	public static final String RING_LARGE	= "5";
 	
 	/*
+	 * =========== COLORS ===========
+	 */
+	
+	/**
+	 * String representation of the primary color of any player.
+	 */
+	public static final String PRIMARY	= "0";
+	
+	/**
+	 * String representation of the secondary color of any player.
+	 */
+	public static final String SECONDARY	= "1";
+	
+	/*
 	 * =========== EXTENSION: CHATTING ===========
 	 */
 	
@@ -217,13 +231,6 @@ public interface Protocol {
 		/*
 		 * =========== PLAYING A GAME ===========
 		 */
-		
-		/**
-		 * This packet is sent at the very start of the game, so all players know who
-		 * is the first player to move. Otherwise, clients would be unable to track
-		 * whose turn it is for a couple turns.
-		 */
-		public static final String STARTING_PLAYER = "sp";
 		
 		/**
 		 * This packet is sent by the server to the client that has to make a move. The
