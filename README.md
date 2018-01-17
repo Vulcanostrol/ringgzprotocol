@@ -30,7 +30,7 @@ These extensions can be the chatting-, challenging-, leaderboard- or security ex
 
   The server will then send a response to this packet containing whether it is accepting the client:
   
-### CONNECT_REPLY;[accept/decline];&lt;extension1&gt;;&lt;extension2&gt;;&lt;extension3&gt;;&lt;extension4&gt;
+### CONNECT;[accept/decline];&lt;extension1&gt;;&lt;extension2&gt;;&lt;extension3&gt;;&lt;extension4&gt;
 
   Here, CONNECT_REPLY is once again the type of packet. This will be assumed to be known from now on. In the format, accept/decline is whether the server accepted the connection of the client. The two string that will represent acceptance and declination will also be in the protocol code. The extension blocks are what extensions the server is using. Likewise, the client should handle these information blocks when given in any order and he same extension will not be given more than once.
   
