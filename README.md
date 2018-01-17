@@ -95,7 +95,7 @@ If the accept/decline does not correspond to the ACCEPT or DECLINE in the code, 
   
 ### MOVE;[x];[y];[move_type];&lt;color&gt;
 
-  Here, X and Y represent the target coordinates of the piece that the player is placing. The move_type information block represents the type of piece the player is placing, these can be:
+  Here, X and Y represent the target coordinates of the piece that the player is placing. Both of these coordinates range from 0-4. The move_type information block represents the type of piece the player is placing, these can be:
   
 -Start base 
 -Base
