@@ -28,7 +28,7 @@ Usernames or chat messages can contain any character, excluding the semicolon ( 
   Here, CONNECT is type of packet, username is the username your client will play as, and extension1, extension2, extension3 and extension4 are the extensions your client is using. 
 These extensions can be the chatting-, challenging-, leaderboard- or security extension and should be handled by the server when given in any order. The same extension will not be given more than once. String representations of the extensions are found in the protocol code. If the extensions that are sent do not correspond to the string representations in the code, it can be ignored.
 
-  The server will then send a response to this packet containing whether it is accepting the client. In addition to than decide on whether it wants to cis, the server will send its extensions that it is using. This way, the client connect with this server. The response packet will have the following format:
+  The server will then send a response to this packet containing whether it is accepting the client:
   
 ### CONNECT_REPLY;[accept/decline];&lt;extension1&gt;;&lt;extension2&gt;;&lt;extension3&gt;;&lt;extension4&gt;
 
@@ -120,7 +120,7 @@ All information in this packet is the same as in the previous packet. This will 
   
 ### GAME_ENDED;[username1];[points1];[username2];[points2];&lt;username3&gt;;&lt;points3&gt;;&lt;username4&gt;;&lt;points4&gt;
 
-  Here, all usernameK information blocks are linked to their respective score, given in scoreK. Clients can of course count the points themselves. However, the server will still send this information always when a game has ended. Therefore, a client will not have to count points when a game has ended.
+  Here, all usernameK information blocks are linked to their respective score, given in scoreK. Clients can of course count the points themselves. However, the server will still send this information always when a game has ended. Therefore, a client will not have to count points when a game has ended. Notice that if the server supports the leaderboard extension, then the server must update the leaderboard.
   
 ## Player Disconnects
 
