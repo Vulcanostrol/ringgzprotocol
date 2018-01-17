@@ -63,6 +63,8 @@ These extensions can be the chatting-, challenging-, leaderboard- or security ex
 
   The order of the players doesn’t matter as long as the order in the packet corresponds with the order of players in the game. E.g.: username2 in this packet must correspond with the player 2 in the game.
   
+  Notice that username1 will be the player placng the starting base.
+  
   The response of the client side be a packet that let’s the server know if the player accepted or declined the beginning of the game.
   
 ### PLAYER_STATUS;[accept/decline]
@@ -81,11 +83,7 @@ If the accept/decline does not correspond to the ACCEPT or DECLINE in the code, 
 
 ## Playing the game
 
-  When the game starts, players need to know who starts. The server will assign a random player to make the first move and quickly send the following packet to all players:
-  
-### STARTING_PLAYER;[username]
-
-  Here, username is the username of the player that will move first. After this, the server sends the starting player a packet with the format:
+  When the game starts, players need to know who starts. As said before: this will be the player with username1 in the ALL_PLAYERS_CONNECTED packet that was sent before.
   
 ### MAKE_MOVE
 
@@ -97,23 +95,23 @@ If the accept/decline does not correspond to the ACCEPT or DECLINE in the code, 
 
   Here, X and Y represent the target coordinates of the piece that the player is placing. Both of these coordinates range from 0-4. The move_type information block represents the type of piece the player is placing, these can be:
   
--Start base 
--Base
--Ring:
-      -Smallest
-      -Small
-      -Normal
-      -Huge
+- Start base 
+- Base
+- Ring:
+      - Smallest
+      - Small
+      - Normal
+      - Huge
 
   The color information block represents what color a player is moving with. Notice that the color is not mandatory to conform to the protocol. If the move_type information block is representing the starting base, the color does not have to be given. Otherwise, it has to be given. The colors can be:
-    -Primary
-    -Secondary
+    - Primary
+    - Secondary
 
   Move types and primary/secondary color string representations are found in the code. Colors are assigned on the client. The server always checks whether the move the player is making is valid. If it is not, the server resends the initial packet to the same client. Otherwise, the server send the following packet to all clients. Notice that not only x and y can be out of bounds, but also move_type and color can differ from the code.
   
-### MOVE;[x];[y];[move_type];&lt;color&gt;
+### MOVE;[x];[y];[username];[move_type];&lt;color&gt;
 
-All information in this packet is the same as in the previous packet. This will always be a valid move since the server only sends this packet if the move is valid.
+All information in this packet is the same as in the previous packet. This will always be a valid move since the server only sends this packet if the move is valid. The only information block that was added was the username information block. This is the username of the player that made the move.
 
 ## Game Ended
 
