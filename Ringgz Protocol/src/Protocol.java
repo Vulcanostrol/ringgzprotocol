@@ -68,14 +68,14 @@ public interface Protocol {
 	 */
 	
 	/**
-	 * String representation of a base. Used in <code>MOVE</code> packets.
-	 */
-	public static final String BASE	= "0";
-	
-	/**
 	 * String representation of the starting base. Used in <code>MOVE</code> packets.
 	 */
-	public static final String STARTING_BASE	= "1";
+	public static final String STARTING_BASE	= "0";
+	
+	/**
+	 * String representation of a base. Used in <code>MOVE</code> packets.
+	 */
+	public static final String BASE	= "1";
 	
 	/**
 	 * String representation of the smallest size ring. Used in <code>MOVE</code>
