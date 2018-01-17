@@ -58,7 +58,7 @@ These extensions can be the chatting-, challenging-, leaderboard- or security ex
 
   After all players connected to the lobby, the server will send a packet to the client side with the following format:
   
-### ALL_PLAYERS_CONNECTED;[username1];[username2];<username3>;<username4>
+### ALL_PLAYERS_CONNECTED;[username1];[username2];&lt;username3&gt;;&lt;username4&gt;
 
   The order of the players doesn’t matter as long as the order in the packet corresponds with the order of players in the game. E.g.: username2 in this packet must correspond with the player 2 in the game.
   
@@ -92,7 +92,7 @@ If the accept/decline does not correspond to the ACCEPT or DECLINE in the code, 
   
   The response from the client will be the move that player made with the following format:
   
-### MOVE;[x];[y];[move_type];[color]
+### MOVE;[x];[y];[move_type];&lt;color&gt;
 
   Here, X and Y represent the target coordinates of the piece that the player is placing. The move_type information block represents the type of piece the player is placing, these can be:
   
@@ -104,13 +104,13 @@ If the accept/decline does not correspond to the ACCEPT or DECLINE in the code, 
       -Normal
       -Huge
 
-  The color information block represents what color a player is moving with, colors can be:
+  The color information block represents what color a player is moving with. Notice that the color is not mandatory to conform to the protocol. If the move_type information block is representing the starting base, the color does not have to be given. Otherwise, it has to be given. The colors can be:
     -Primary
     -Secondary
 
   Move types and primary/secondary color string representations are found in the code. Colors are assigned on the client. The server always checks whether the move the player is making is valid. If it is not, the server resends the initial packet to the same client. Otherwise, the server send the following packet to all clients. Notice that not only x and y can be out of bounds, but also move_type and color can differ from the code.
   
-### MOVE;[x];[y];[move_type];[color]
+### MOVE;[x];[y];[move_type];&lt;color&gt;
 
 All information in this packet is the same as in the previous packet. This will always be a valid move since the server only sends this packet if the move is valid.
 
