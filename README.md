@@ -45,7 +45,7 @@ These extensions can be the chatting-, challenging-, leaderboard- or security ex
   
   The player_type is the type of player that the client is running on.
   
-  The opponent_type represents if you want to play versus a human or versus an AI. If the string that is sent does not correspond to what is found in the code, or opponent_type was not sent, HUMAN_PLAYER can be assumed by the server.
+  The opponent_type represents if you want to play versus a human or versus an AI. If the string that is sent does not correspond to what is found in the code, or opponent_type was not sent, the server must assume that the client has no preference and match the client with both humans and AI (whatever lobby the cliebt fits in first).
   
   The response from the server will be a textual feedback that lets the player know that he successfully joined in the lobby. 
   
