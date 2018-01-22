@@ -114,6 +114,16 @@ public interface Protocol {
 	/** Messages sent to a given player. */
 	public static final String PRIVATE	= "2";
 	
+	/*
+	 * =========== EXTENSION: SECURITY ===========
+	 */
+	
+	/** String to represent a client wants to log into the server. */
+	public static final String LOGIN	= "0";
+	
+	/** String to represent a client wants to register an account on the server. */
+	public static final String REGISTER	= "1";
+	
 	/**
 	 * This class contains all string representations of all the game extensions.
 	 * There are four extensions:
