@@ -219,6 +219,8 @@ The client can also choose to get a log of when a specific player acquired point
 
   Notice this packet does NOT contain the username of the player. The username was already given when the client first asked for the extensions of the server. A server with the security extension will (if the client also has the security extension) always accept the connection with the client, even if the username does not exist yet. The player will not be able to request any games until he or she has logged in. If the player is not logged in yet, he or she can register using the preceding packet. The password is the password that the server will directly store and login/register is whether the player wants to register the current username/password duo or if it wants to log in using the given username/password duo.
   
+  The login/register information block is either the LOGIN or REGISTER string in the protocol code.
+  
   Important: notice only a plan text password is given by the client, that is directly sent over the internet. Any salting and/or hashing and/or verifying password (like filling in a password twice to see if you did not make a typo) has to be done client side.
   
   The server will respond to the client’s packet with the following packet:
