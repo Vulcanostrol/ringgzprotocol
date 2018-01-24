@@ -139,7 +139,7 @@ As said, all remaining players move to the request game state, where they can re
   Here, message_text is the plain text message that the sender is sending, message_type is the type of message that the sender is sending. The string representations of these message types are in the protocol code. The types of messages are:
   
 - Global: the message is sent to everyone that is connected to the server.
-- Game: the message is sent to everyone that is currently in the same game as the sender.
+- Lobby: the message is sent to everyone that is currently in the same lobby (game) as the sender.
 - Private: the message is sent to the player that is connected to the server and has the same username as given in the receiver information block. If the message_type does not correspond to the string representations in the code, GLOBAL can be assumed by the server. If the receiver username does not exist, the message is not sent to anybody.
 
 All clients have to always be ready for the following packet from the server:
