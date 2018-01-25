@@ -71,7 +71,7 @@ These extensions can be the chatting-, challenging-, leaderboard- or security ex
 
 If the accept/decline does not correspond to the ACCEPT or DECLINE in the code, DECLINE can be assumed by the server.
 
-  If somebody declined, all players will be send in the lobby and the ”you are in and waiting” packet will be send:
+  If somebody declined, all players whom accepted will be send the ”you are in and waiting” packet:
   
 ### JOINED_LOBBY
 
